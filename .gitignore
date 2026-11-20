@@ -1,0 +1,21 @@
+# Node / Astro
+node_modules/
+dist/
+.astro/
+astro-demo/site/node_modules/
+astro-demo/site/dist/
+astro-demo/site/src/content/blog/
+
+# Python / MkDocs
+.venv/
+mkdocs-demo/.venv/
+mkdocs-demo/site/
+mkdocs-demo/docs/blog/
+__pycache__/
+*.py[cod]
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+

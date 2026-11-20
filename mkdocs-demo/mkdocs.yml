@@ -1,0 +1,21 @@
+site_name: Cloudflare Static Blog Pipeline
+site_description: Astro and MkDocs Pages build comparison
+site_url: https://example.com
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+nav:
+  - 홈: index.md
+  - 블로그:
+      - Pages 자동 배포: blog/cloudflare-static-blog-pipeline.md
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+
