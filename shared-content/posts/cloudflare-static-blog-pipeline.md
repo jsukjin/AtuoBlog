@@ -2,10 +2,12 @@
 title: "Cloudflare Pages로 블로그를 자동 배포하는 기본 흐름"
 description: "Markdown 원고를 정적 사이트로 빌드하고 Cloudflare Pages에 배포하는 과정을 살펴봅니다."
 pubDate: "2026-11-20"
-category: "블로그 구축"
+category: "IT"
 tags:
   - Cloudflare Pages
   - Markdown
+  - Astro
+  - MkDocs
 ---
 
 ## Markdown 원고에서 웹 페이지까지

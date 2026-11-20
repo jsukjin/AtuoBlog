@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import PostCard from '../../components/PostCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { taxonomySlug } from '../../lib/taxonomy';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+	return tags.map((tag) => ({ params: { tag: taxonomySlug(tag) }, props: { tag } }));
+}
+
+const { tag } = Astro.props;
+const posts = (await getCollection('blog'))
+	.filter((post) => post.data.tags.includes(tag))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<SiteLayout title={`#${tag} 태그`}>
+	<p class="eyebrow">TAG</p>
+	<h1>#{tag}</h1>
+	<p class="description">이 태그가 붙은 글입니다.</p>
+	<div class="post-list">{posts.map((post) => <PostCard post={post} />)}</div>
+</SiteLayout>
+
+<style>
+	.eyebrow { margin: 0 0 0.4rem; color: var(--accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; }
+	h1 { margin: 0; }
+	.description { margin: 0.5rem 0 1.6rem; color: rgb(var(--gray)); }
+	.post-list { display: grid; gap: 0.85rem; }
+</style>
+
