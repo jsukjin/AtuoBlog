@@ -12,7 +12,6 @@
 ## 로컬 빌드
 
 ```powershell
-node scripts/sync-content.mjs
 node scripts/build-pages.mjs
 ```
 

@@ -18,7 +18,7 @@ function run(command, args, cwd) {
 }
 
 run('node', ['scripts/sync-content.mjs'], root);
-run('npm', ['install'], astroDir);
+run('npm', ['ci'], astroDir);
 run('npm', ['run', 'build'], astroDir);
 
 let python;
