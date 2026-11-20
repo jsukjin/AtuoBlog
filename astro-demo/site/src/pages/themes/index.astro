@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import ThemeArticlePreview from '../../components/ThemeArticlePreview.astro';
 ---
 
 <SiteLayout title="다크모드 테마 샘플" description="세 가지 다크모드 블로그 디자인을 비교합니다.">
@@ -46,6 +47,21 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 			<p class="fit-note">추천: 주식·생활 정보까지 폭넓게 다루는 블로그</p>
 		</section>
 	</div>
+
+	<nav class="sample-nav" aria-label="테마별 글 예제 바로가기">
+		<a href="#example-editorial">01 · Midnight Editorial 예제</a>
+		<a href="#example-neon">02 · Neon Tech 예제</a>
+		<a href="#example-warm">03 · Warm Graphite 예제</a>
+	</nav>
+
+	<section class="content-examples" aria-labelledby="examples-heading">
+		<p class="eyebrow">ARTICLE ELEMENTS</p>
+		<h2 id="examples-heading">실제 글 구성 요소 비교</h2>
+		<p class="examples-description">같은 예시 글을 각 테마에 적용했습니다. 대제목과 소제목, 사진과 캡션, 강조 문장, 코드 상자, 콜아웃을 확인하세요.</p>
+		<ThemeArticlePreview id="example-editorial" variant="editorial" name="01 · Midnight Editorial" />
+		<ThemeArticlePreview id="example-neon" variant="neon" name="02 · Neon Tech" />
+		<ThemeArticlePreview id="example-warm" variant="warm" name="03 · Warm Graphite" />
+	</section>
 </SiteLayout>
 
 <style>
@@ -54,6 +70,12 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 	.page-intro h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.6rem); }
 	.page-intro > p:last-child { max-width: 48rem; margin: 0.6rem 0 0; color: rgb(var(--gray)); font-size: 0.92rem; }
 	.theme-list { display: grid; gap: 1rem; }
+	.sample-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 3rem; }
+	.sample-nav a { padding: 0.45rem 0.75rem; border: 1px solid rgb(var(--gray-light)); border-radius: 999px; color: rgb(var(--gray-dark)); font-size: 0.78rem; text-decoration: none; }
+	.sample-nav a:hover { border-color: var(--accent); color: var(--accent); }
+	.content-examples { margin-top: 1rem; }
+	.content-examples h2 { margin: 0; font-size: 1.6rem; }
+	.examples-description { margin: 0.45rem 0 1.2rem; color: rgb(var(--gray)); font-size: 0.88rem; }
 	.theme-option { --theme-accent: #aab8ff; --theme-soft: #202638; --theme-bg: #151a24; padding: 1rem; border: 1px solid rgb(var(--gray-light)); border-radius: 17px; background: #141922; }
 	.option-heading { display: flex; align-items: center; gap: 0.8rem; margin: 0.2rem 0 0.9rem; }
 	.number { display: grid; width: 2.25rem; height: 2.25rem; place-items: center; border: 1px solid var(--theme-accent); border-radius: 50%; color: var(--theme-accent); font-size: 0.76rem; font-weight: 700; }
@@ -76,4 +98,3 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 	.warm .sample h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; }
 	@media (max-width: 560px) { .theme-option { padding: 0.75rem; } .sample { padding: 1rem; } }
 </style>
-
