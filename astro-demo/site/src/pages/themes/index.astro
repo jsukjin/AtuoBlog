@@ -1,0 +1,79 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout title="다크모드 테마 샘플" description="세 가지 다크모드 블로그 디자인을 비교합니다.">
+	<div class="page-intro">
+		<p class="eyebrow">DARK THEME GALLERY</p>
+		<h1>마음에 드는 분위기를 골라보세요</h1>
+		<p>같은 글과 구성을 세 가지 다크모드 스타일로 표현했습니다. 마음에 드는 번호를 알려주시면 블로그 전체에 적용하겠습니다.</p>
+	</div>
+
+	<div class="theme-list">
+		<section class="theme-option editorial">
+			<div class="option-heading"><span class="number">01</span><div><h2>Midnight Editorial</h2><p>차분하고 여백이 있는 매거진 스타일</p></div></div>
+			<div class="sample">
+				<div class="sample-top"><span>AI 인사이트</span><span>6분 읽기</span></div>
+				<p class="sample-kicker">GUIDE · 2026.11.21</p>
+				<h3>생성형 AI로 반복 업무 줄이는 방법</h3>
+				<p class="sample-copy">일상에서 바로 적용할 수 있는 도구와 활용 방법을 살펴봅니다.</p>
+				<div class="sample-bottom"><span>업무 자동화</span><span>AI 도구</span><span class="read-more">글 읽기 →</span></div>
+			</div>
+			<p class="fit-note">추천: 정보가 잘 읽히는 깔끔한 블로그</p>
+		</section>
+
+		<section class="theme-option neon">
+			<div class="option-heading"><span class="number">02</span><div><h2>Neon Tech</h2><p>선명한 포인트 컬러와 기술적인 인상</p></div></div>
+			<div class="sample">
+				<div class="sample-top"><span>● SYSTEM / AI</span><span>06 MIN</span></div>
+				<p class="sample-kicker">// PRACTICAL GUIDE</p>
+				<h3>생성형 AI로<br />반복 업무 줄이는 방법</h3>
+				<p class="sample-copy">도구를 연결하고 자동화하는 과정을 단계별로 소개합니다.</p>
+				<div class="sample-bottom"><span>#AI</span><span>#자동화</span><span class="read-more">OPEN ↗</span></div>
+			</div>
+			<p class="fit-note">추천: IT·AI 중심의 강한 브랜드 느낌</p>
+		</section>
+
+		<section class="theme-option warm">
+			<div class="option-heading"><span class="number">03</span><div><h2>Warm Graphite</h2><p>따뜻한 색감과 부드러운 매거진 스타일</p></div></div>
+			<div class="sample">
+				<div class="sample-top"><span>TECH &amp; IDEAS</span><span>2026년 11월 21일</span></div>
+				<p class="sample-kicker">생산성 · AI</p>
+				<h3>생성형 AI로 반복 업무 줄이는 방법</h3>
+				<p class="sample-copy">복잡한 기술을 일상적인 언어로 풀어 차근차근 정리합니다.</p>
+				<div class="sample-bottom"><span>AI 활용</span><span>실전 가이드</span><span class="read-more">자세히 보기 →</span></div>
+			</div>
+			<p class="fit-note">추천: 주식·생활 정보까지 폭넓게 다루는 블로그</p>
+		</section>
+	</div>
+</SiteLayout>
+
+<style>
+	.page-intro { margin-bottom: 1.7rem; }
+	.eyebrow { margin: 0 0 0.35rem; color: var(--accent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em; }
+	.page-intro h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+	.page-intro > p:last-child { max-width: 48rem; margin: 0.6rem 0 0; color: rgb(var(--gray)); font-size: 0.92rem; }
+	.theme-list { display: grid; gap: 1rem; }
+	.theme-option { --theme-accent: #aab8ff; --theme-soft: #202638; --theme-bg: #151a24; padding: 1rem; border: 1px solid rgb(var(--gray-light)); border-radius: 17px; background: #141922; }
+	.option-heading { display: flex; align-items: center; gap: 0.8rem; margin: 0.2rem 0 0.9rem; }
+	.number { display: grid; width: 2.25rem; height: 2.25rem; place-items: center; border: 1px solid var(--theme-accent); border-radius: 50%; color: var(--theme-accent); font-size: 0.76rem; font-weight: 700; }
+	.option-heading h2 { margin: 0; font-size: 1.08rem; }
+	.option-heading p { margin: 0.1rem 0 0; color: rgb(var(--gray)); font-size: 0.77rem; }
+	.sample { padding: 1.3rem 1.45rem; border: 1px solid color-mix(in srgb, var(--theme-accent) 30%, transparent); border-radius: 13px; background: var(--theme-bg); }
+	.sample-top, .sample-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; color: rgb(var(--gray)); font-size: 0.7rem; }
+	.sample-top { justify-content: space-between; padding-bottom: 0.7rem; border-bottom: 1px solid rgb(var(--gray-light)); }
+	.sample-kicker { margin: 1rem 0 0.35rem; color: var(--theme-accent); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.11em; }
+	.sample h3 { max-width: 44rem; margin: 0; font-size: clamp(1.2rem, 3vw, 1.7rem); line-height: 1.4; }
+	.sample-copy { margin: 0.4rem 0 0.9rem; color: rgb(var(--gray-dark)); font-size: 0.83rem; }
+	.sample-bottom > span:not(.read-more) { padding: 0.1rem 0.55rem; border: 1px solid rgb(var(--gray-light)); border-radius: 99px; }
+	.read-more { margin-left: auto; color: var(--theme-accent); font-weight: 700; }
+	.fit-note { margin: 0.65rem 0 0; color: rgb(var(--gray)); font-size: 0.75rem; }
+	.neon { --theme-accent: #60f0dc; --theme-bg: #090f14; border-color: #21443f; }
+	.neon .sample { border-radius: 5px; font-family: 'Courier New', monospace; }
+	.neon .number { border-radius: 5px; }
+	.warm { --theme-accent: #e5b77c; --theme-bg: #211b1b; border-color: #4a3832; }
+	.warm .sample { border-radius: 5px 28px 5px 28px; }
+	.warm .sample h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; }
+	@media (max-width: 560px) { .theme-option { padding: 0.75rem; } .sample { padding: 1rem; } }
+</style>
+

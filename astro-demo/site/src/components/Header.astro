@@ -17,6 +17,7 @@ const categories = [
 		<div class="internal-links">
 			<HeaderLink href="/">홈</HeaderLink>
 			<HeaderLink href="/blog/">전체 글</HeaderLink>
+			<HeaderLink href="/themes/">테마 샘플</HeaderLink>
 			{categories.map((category) => (
 				<a class:list={[{ active: Astro.url.pathname.startsWith(category.href) }]} href={category.href}>{category.name}</a>
 			))}
