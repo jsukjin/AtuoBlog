@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const source = path.join(root, 'shared-content', 'posts');
 const destinations = [
   path.join(root, 'astro-demo', 'site', 'src', 'content', 'blog'),
+  path.join(root, 'mkdocs-demo', 'docs', 'blog'),
 ];
 
 for (const destination of destinations) {
@@ -16,4 +17,12 @@ for (const destination of destinations) {
   }
 }
 
-console.log('Synced shared Markdown into Astro.');
+const mkdocsImages = path.join(root, 'mkdocs-demo', 'docs', 'images');
+const sourceImages = path.join(root, 'astro-demo', 'site', 'src', 'assets');
+await rm(mkdocsImages, { recursive: true, force: true });
+await mkdir(mkdocsImages, { recursive: true });
+for (const name of ['ai-workflow-hero.webp', 'ai-workflow-inline.webp']) {
+  await cp(path.join(sourceImages, name), path.join(mkdocsImages, name));
+}
+
+console.log('Synced shared Markdown into Astro and MkDocs.');

@@ -5,7 +5,15 @@ dist/
 astro-demo/site/node_modules/
 astro-demo/site/dist/
 astro-demo/site/src/content/blog/
-mkdocs-demo/
+
+# Python / MkDocs comparison build
+.venv/
+mkdocs-demo/.venv/
+mkdocs-demo/site/
+mkdocs-demo/docs/blog/
+mkdocs-demo/docs/images/
+__pycache__/
+*.py[cod]
 
 # Local editor and OS files
 .DS_Store
