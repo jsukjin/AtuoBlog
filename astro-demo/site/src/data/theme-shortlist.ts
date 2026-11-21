@@ -3,7 +3,7 @@ export const themeShortlist = [
 		slug: 'as-folio',
 		name: 'as-folio',
 		style: 'Academic portfolio',
-		accent: '#b799ff',
+		accent: '#32c77d',
 		demo: 'https://dadangnh.github.io/as-folio/',
 		source: 'https://astro.build/themes/details/as-folio/',
 		description: '논문과 프로젝트, 이력서, 블로그를 한데 보여주는 연구자·전문가형 디자인입니다.',
@@ -104,4 +104,3 @@ export const themeShortlist = [
 		fit: '검색과 태그가 포함된 가벼운 글 중심 블로그를 원할 경우',
 	},
 ];
-

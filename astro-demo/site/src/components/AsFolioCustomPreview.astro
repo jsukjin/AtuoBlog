@@ -1,0 +1,71 @@
+---
+import Hero from '../assets/ai-workflow-hero.webp';
+import Inline from '../assets/ai-workflow-inline.webp';
+import About from '../assets/blog-placeholder-about.jpg';
+---
+
+<div class="asfolio-preview">
+	<header class="topbar">
+		<a class="brand" href="#top"><span class="brand-mark">A</span><span>Jin’s Journal<small>IDEAS · TECHNOLOGY · FINANCE</small></span></a>
+		<nav aria-label="주요 메뉴"><a class="active" href="#posts" data-category="전체">전체 글</a><a href="#posts" data-category="IT">IT</a><a href="#posts" data-category="AI">AI</a><a href="#posts" data-category="주식">Stock</a><a href="#tags">태그</a><a href="#about">소개</a></nav>
+		<label class="search"><span aria-hidden="true">⌕</span><input type="search" placeholder="글 검색" aria-label="글 검색" /></label>
+	</header>
+	<main id="top">
+		<section class="hero">
+			<div><p class="kicker">NOTES ON WHAT MATTERS</p><h1>기술과 시장을<br /><em>차분히 기록합니다.</em></h1><p class="intro">IT와 AI, 주식에 관한 생각과 배움을 모으는 개인 블로그입니다.</p><a class="all-posts" href="#posts">최근 글 둘러보기 <span>↓</span></a></div>
+			<figure class="hero-image"><img src={About.src} alt="책상 위 노트와 식물" /><figcaption>기록하고, 배우고, 나누기</figcaption></figure>
+		</section>
+		<div class="content-head" id="posts"><div><p class="kicker">THE JOURNAL</p><h2>최근 글</h2></div><span class="result-count" aria-live="polite">3개의 글</span></div>
+		<div class="tag-row" id="tags"><button class="tag selected" data-tag="전체">전체</button><button class="tag" data-tag="자동화">#자동화</button><button class="tag" data-tag="Gemini">#Gemini</button><button class="tag" data-tag="Cloudflare">#Cloudflare</button><button class="tag" data-tag="AI">#AI</button></div>
+		<section class="post-grid" aria-label="블로그 글 목록">
+			<article class="post" data-category="AI" data-tags="자동화 Gemini AI Cloudflare"><a class="thumb" href="#article"><img src={Hero.src} alt="AI 자동화 워크플로를 정리한 노트북 화면" /><span>AI · 자동화</span></a><div class="post-copy"><p class="meta">2026.11.21 <span>·</span> 8분 읽기</p><h3><a href="#article">Gemini와 n8n으로 블로그 초안 만들기</a></h3><p>아이디어를 글로 다듬고, 이미지와 함께 게시 준비까지 이어지는 흐름을 정리합니다.</p><div class="post-tags"><a href="#tags" data-tag-link="Gemini">#Gemini</a><a href="#tags" data-tag-link="자동화">#자동화</a></div></div></article>
+			<article class="post" data-category="IT" data-tags="Cloudflare 자동화"><a class="thumb" href="#article"><img src={Inline.src} alt="체크리스트와 노트북으로 작업 흐름을 확인하는 장면" /><span>IT · Cloudflare</span></a><div class="post-copy"><p class="meta">2026.11.18 <span>·</span> 6분 읽기</p><h3><a href="#article">Cloudflare Pages로 정적 블로그 배포하기</a></h3><p>Markdown 원고를 자동으로 빌드하고 무료 호스팅에 게시하는 방법을 살펴봅니다.</p><div class="post-tags"><a href="#tags" data-tag-link="Cloudflare">#Cloudflare</a><a href="#tags" data-tag-link="자동화">#자동화</a></div></div></article>
+			<article class="post" data-category="주식" data-tags="AI"><a class="thumb stock-thumb" href="#article"><div class="chart" aria-label="상승 흐름을 나타내는 차트"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>STOCK · NOTES</span></a><div class="post-copy"><p class="meta">2026.11.12 <span>·</span> 5분 읽기</p><h3><a href="#article">AI 시대, 투자 아이디어를 기록하는 법</a></h3><p>흩어지는 뉴스와 관찰을 꾸준히 축적하기 위한 개인적인 정리법입니다.</p><div class="post-tags"><a href="#tags" data-tag-link="AI">#AI</a></div></div></article>
+		</section>
+		<article class="article-sample" id="article"><div><p class="kicker">ARTICLE PREVIEW</p><h2>글 목록에서 제목을 눌렀을 때의 본문 구성</h2><p>AI와 IT, 시장에 관한 글을 읽기 편하게 구성합니다. <strong>본문 강조 색은 선명한 초록색</strong>으로 표시하고, 목록 썸네일은 크게 배치합니다.</p><p class="article-tag">#AI　#자동화　#Cloudflare</p></div><img src={Hero.src} alt="본문에 들어가는 큰 예시 이미지" /></article>
+		<footer id="about">Jin’s Journal <span>기술과 배움을 기록하는 공간</span></footer>
+	</main>
+</div>
+
+<script>
+	const preview = document.querySelector('.asfolio-preview');
+	if (preview) {
+		const posts = [...preview.querySelectorAll<HTMLElement>('.post')];
+		const search = preview.querySelector<HTMLInputElement>('.search input');
+		const count = preview.querySelector<HTMLElement>('.result-count');
+		let category = '전체';
+		let tag = '전체';
+		const filter = () => {
+			const query = (search?.value || '').trim().toLowerCase();
+			let visible = 0;
+			for (const post of posts) {
+				const text = post.innerText.toLowerCase();
+				const matches = (category === '전체' || post.dataset.category === category) && (tag === '전체' || post.dataset.tags?.includes(tag)) && (!query || text.includes(query));
+				post.hidden = !matches;
+				if (matches) visible++;
+			}
+			if (count) count.textContent = `${visible}개의 글`;
+		};
+		search?.addEventListener('input', filter);
+		preview.querySelectorAll<HTMLAnchorElement>('nav a[data-category]').forEach((link) => link.addEventListener('click', () => {
+			category = link.dataset.category || '전체';
+			preview.querySelectorAll('nav a').forEach((item) => item.classList.toggle('active', item === link));
+			filter();
+		}));
+		preview.querySelectorAll<HTMLButtonElement>('.tag[data-tag]').forEach((button) => button.addEventListener('click', () => {
+			tag = button.dataset.tag || '전체';
+			preview.querySelectorAll('.tag').forEach((item) => item.classList.toggle('selected', item === button));
+			filter();
+		}));
+		preview.querySelectorAll<HTMLAnchorElement>('[data-tag-link]').forEach((link) => link.addEventListener('click', () => {
+			tag = link.dataset.tagLink || '전체';
+			preview.querySelectorAll<HTMLButtonElement>('.tag').forEach((item) => item.classList.toggle('selected', item.dataset.tag === tag));
+			filter();
+		}));
+	}
+</script>
+
+<style>
+	.asfolio-preview{--green:#32c77d;--green-soft:#9de8bf;--bg:#101511;--panel:#151c17;--line:#28372d;--muted:#a4b2a8;min-height:min(82vh,860px);background:var(--bg);color:#e8f0ea;font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.asfolio-preview *{box-sizing:border-box}.topbar{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(1rem,3vw,3.5rem);padding:1rem clamp(1rem,5vw,4.5rem);border-bottom:1px solid var(--line);background:rgba(16,21,17,.96);backdrop-filter:blur(12px)}.brand{display:flex;align-items:center;gap:.65rem;color:#edf5ef;text-decoration:none;font-size:.9rem;font-weight:750;white-space:nowrap}.brand-mark{display:grid;width:2.2rem;height:2.2rem;place-items:center;border:1px solid var(--green);border-radius:50%;color:var(--green);font-family:Georgia,serif;font-size:1.2rem}.brand small{display:block;color:var(--muted);font-size:.52rem;letter-spacing:.13em}.topbar nav{display:flex;align-items:center;justify-content:center;gap:clamp(.8rem,2.5vw,2.4rem)}.topbar nav a{padding:.45rem 0;border-bottom:2px solid transparent;color:#b8c4ba;font-size:.8rem;text-decoration:none;white-space:nowrap}.topbar nav a:hover,.topbar nav a.active{border-color:var(--green);color:var(--green-soft)}.search{display:flex;align-items:center;gap:.45rem;min-width:8.5rem;padding:.4rem .7rem;border:1px solid var(--line);border-radius:99px;color:var(--green);font-size:1.1rem}.search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#edf5ef;font:inherit;font-size:.72rem}.search input::placeholder{color:#829087}.asfolio-preview main{width:min(1200px,100%);margin:auto;padding:clamp(1.5rem,5vw,4rem) clamp(1rem,5vw,3.5rem) 2rem}.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:clamp(2rem,6vw,6rem);padding:1rem 0 3.7rem;border-bottom:1px solid var(--line)}.kicker{margin:0 0 .65rem;color:var(--green);font-size:.68rem;font-weight:800;letter-spacing:.16em}.hero h1{margin:0;color:#f0f6f1;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.045em;line-height:1.16}.hero h1 em{color:var(--green-soft);font-style:normal}.intro{max-width:31rem;margin:1rem 0 1.5rem;color:var(--muted);font-size:.94rem}.all-posts{display:inline-flex;align-items:center;gap:.8rem;color:var(--green-soft);font-size:.82rem;font-weight:700;text-decoration:none}.all-posts span{display:grid;width:1.8rem;height:1.8rem;place-items:center;border:1px solid var(--green);border-radius:50%}.hero-image{position:relative;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:1rem}.hero-image img{display:block;width:100%;height:clamp(210px,27vw,330px);object-fit:cover;opacity:.82}.hero-image figcaption{position:absolute;right:1rem;bottom:.8rem;padding:.35rem .6rem;border-radius:5px;background:rgba(12,17,13,.78);color:#d9e8dd;font-size:.65rem}.content-head{display:flex;align-items:end;justify-content:space-between;margin:2.5rem 0 1rem}.content-head h2{margin:0;font-size:1.65rem}.result-count{color:var(--muted);font-size:.75rem}.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.3rem}.tag{padding:.35rem .75rem;border:1px solid var(--line);border-radius:99px;background:transparent;color:var(--muted);font:inherit;font-size:.7rem;cursor:pointer}.tag:hover,.tag.selected{border-color:var(--green);background:rgba(50,199,125,.1);color:var(--green-soft)}.post-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.post{overflow:hidden;border:1px solid var(--line);border-radius:.85rem;background:var(--panel);transition:transform .2s,border-color .2s}.post:hover{transform:translateY(-3px);border-color:#3d7052}.post[hidden]{display:none}.thumb{position:relative;display:block;overflow:hidden;background:#1c3022}.thumb img{display:block;width:100%;height:clamp(190px,25vw,300px);object-fit:cover;transition:transform .35s}.post:hover .thumb img{transform:scale(1.025)}.thumb>span{position:absolute;left:.8rem;bottom:.8rem;padding:.3rem .55rem;border:1px solid rgba(157,232,191,.45);border-radius:4px;background:rgba(12,20,14,.85);color:var(--green-soft);font-size:.62rem;font-weight:700;letter-spacing:.06em}.stock-thumb{display:grid;height:clamp(190px,25vw,300px);place-items:center;background:radial-gradient(ellipse at 50% 110%,#254d35,#15251a 64%,#111a14)}.chart{display:flex;align-items:end;gap:clamp(.5rem,2vw,1.4rem);height:60%;width:65%;border-bottom:1px solid #476951;transform:skewY(-9deg)}.chart i{flex:1;height:40%;border:1px solid #63d592;background:linear-gradient(0deg,rgba(50,199,125,.1),rgba(50,199,125,.35))}.chart i:nth-child(2){height:54%}.chart i:nth-child(3){height:46%}.chart i:nth-child(4){height:73%}.chart i:nth-child(5){height:64%}.chart i:nth-child(6){height:86%}.chart i:nth-child(7){height:100%}.post-copy{padding:1rem 1.1rem 1.15rem}.meta{margin:0 0 .35rem;color:var(--muted);font-size:.65rem}.meta span{padding:0 .3rem;color:var(--green)}.post h3{margin:0;font-size:1rem;line-height:1.45}.post h3 a{color:#edf5ef;text-decoration:none}.post h3 a:hover{color:var(--green-soft)}.post-copy>p:not(.meta){margin:.5rem 0 .8rem;color:#9cab9f;font-size:.75rem;line-height:1.7}.post-tags{display:flex;gap:.45rem}.post-tags a,.article-tag{color:var(--green-soft);font-size:.68rem;text-decoration:none}.article-sample{display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:2rem;margin:3.5rem 0;padding:1.4rem;border:1px solid var(--line);border-radius:.9rem;background:linear-gradient(120deg,#17231a,#141a15)}.article-sample h2{margin:0 0 .7rem;font-size:1.25rem}.article-sample p:not(.kicker){color:var(--muted);font-size:.8rem}.article-sample strong{color:var(--green-soft)}.article-sample img{width:100%;height:180px;border-radius:.5rem;object-fit:cover}footer{display:flex;justify-content:space-between;gap:1rem;padding:1.3rem 0;border-top:1px solid var(--line);color:#d8e5da;font-size:.75rem}footer span{color:var(--muted)}
+	@media(max-width:760px){.topbar{grid-template-columns:1fr auto;gap:.75rem;padding:.8rem 1rem}.topbar nav{grid-column:1/-1;grid-row:2;justify-content:space-between;gap:.4rem;overflow-x:auto}.topbar nav a{font-size:.72rem}.search{min-width:7.5rem}.hero{grid-template-columns:1fr;gap:1.3rem;padding-bottom:2.2rem}.hero-image img{height:230px}.post-grid{grid-template-columns:1fr}.thumb img,.stock-thumb{height:clamp(220px,58vw,340px)}.article-sample{grid-template-columns:1fr}.article-sample img{height:220px}}
+</style>
