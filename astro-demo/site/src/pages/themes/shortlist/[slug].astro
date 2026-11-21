@@ -2,6 +2,7 @@
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { themeShortlist } from '../../../data/theme-shortlist';
 import AsFolioCustomPreview from '../../../components/AsFolioCustomPreview.astro';
+import BaseHead from '../../../components/BaseHead.astro';
 
 export function getStaticPaths() {
 	return themeShortlist.map((theme, index) => ({
@@ -18,7 +19,16 @@ export function getStaticPaths() {
 const { theme, index, previous, next } = Astro.props;
 ---
 
-<SiteLayout title={`${theme.name} 테마 미리보기`} description={`${theme.name} Astro 블로그 테마의 실제 데모와 블로그 기능을 확인합니다.`}>
+
+{theme.slug === 'as-folio' ? (
+	<html lang="ko">
+		<head><BaseHead title="As-folio 블로그 미리보기" description="상단 메뉴, 초록 강조색, 큰 썸네일을 적용한 As-folio 스타일 블로그 전체 화면 미리보기" /></head>
+		<body class="fullscreen-body">
+			<AsFolioCustomPreview />
+			<a class="exit-preview" href="/themes/shortlist/">테마 비교로 돌아가기 ↗</a>
+		</body>
+	</html>
+) : <SiteLayout title={`${theme.name} 테마 미리보기`} description={`${theme.name} Astro 블로그 테마의 실제 데모와 블로그 기능을 확인합니다.`}>
 	<div class="page-top">
 		<a class="back" href="/themes/shortlist/">← 후보 6개 목록</a>
 		<div class="counter">{String(index + 1).padStart(2, '0')} / 06</div>
@@ -44,7 +54,7 @@ const { theme, index, previous, next } = Astro.props;
 	</div>}
 	<div class="demo-frame" style={`--tone:${theme.accent}`}>
 		<div class="frame-bar"><span><i></i><i></i><i></i></span><span>{theme.name} · {theme.demoNote ? '작성자 사이트 대체 미리보기' : '실제 공개 데모'}</span><a href={theme.demo} target="_blank" rel="noreferrer">새 탭 ↗</a></div>
-		{theme.slug === 'as-folio' ? <AsFolioCustomPreview /> : <iframe src={theme.demo} title={`${theme.name} 실제 테마 데모`} loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>}
+		<iframe src={theme.demo} title={`${theme.name} 실제 테마 데모`} loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 	</div>
 
 	<section class="review" aria-labelledby="review-title">
@@ -66,6 +76,7 @@ const { theme, index, previous, next } = Astro.props;
 		<a href={`/themes/shortlist/${next.slug}/`}>{next.name} →</a>
 	</nav>
 </SiteLayout>
+}
 
 <style>
 	.page-top { display: flex; align-items: center; justify-content: space-between; margin: 0 0 .7rem; }
@@ -110,6 +121,9 @@ const { theme, index, previous, next } = Astro.props;
 	.page-switch { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin: 1rem 0 .3rem; }
 	.page-switch a { color: rgb(var(--gray-dark)); font-size: .73rem; text-decoration: none; }
 	.page-switch a:hover { color: var(--accent); }
+	:global(html), :global(body.fullscreen-body) { width: 100%; min-height: 100%; margin: 0; background: #101511; }
+	.exit-preview { position: fixed; right: 1rem; bottom: 1rem; z-index: 5; padding: .55rem .8rem; border: 1px solid #32c77d; border-radius: 999px; background: rgba(16,21,17,.93); color: #9de8bf; font-size: .72rem; text-decoration: none; box-shadow: 0 5px 24px rgba(0,0,0,.35); }
+	.exit-preview:hover { background: #183322; }
 	@media(max-width:700px) {
 		.theme-head { align-items: flex-start; flex-direction: column; }
 		.head-actions { align-items: flex-start; }
