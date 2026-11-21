@@ -1,158 +1,73 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-
-const themes = [
-	{
-		number: '01',
-		name: 'as-folio',
-		mood: 'Academic portfolio · Dark mode',
-		description: '논문·프로젝트·이력서와 블로그를 함께 보여주는 연구자형 디자인입니다. 블로그 자체보다 개인 프로필과 전문성을 강조할 때 적합합니다.',
-		features: ['다크 모드', '검색', '수식·코드', '포트폴리오'],
-		demo: 'https://dadangnh.github.io/as-folio/',
-		source: 'https://astro.build/themes/details/as-folio/',
-		className: 'folio',
-	},
-	{
-		number: '02',
-		name: 'Draftbase Blog',
-		mood: 'Editorial blog · CMS-connected',
-		description: '작성자·태그·페이지 이동이 있는 정돈된 블로그 형태입니다. 글을 Draftbase CMS에서 관리하는 방식도 함께 살펴볼 수 있습니다.',
-		features: ['작성자', '태그', '페이지 이동', 'RSS'],
-		demo: 'https://draftbase-blog.vercel.app/',
-		source: 'https://astro.build/themes/details/draftbase-blog/',
-		className: 'draftbase',
-	},
-	{
-		number: '03',
-		name: 'Astro Plain',
-		mood: 'Minimal blog · Multilingual',
-		description: '장식과 프레임워크 의존성을 줄인 글 중심 디자인입니다. 다국어 경로와 Markdown·코드 블록이 어떻게 보이는지 확인해보세요.',
-		features: ['미니멀', '다국어', '검색', 'Markdown'],
-		demo: 'https://astro-plain-demo.pages.dev/',
-		source: 'https://astro.build/themes/details/astro-plain/',
-		className: 'plain',
-	},
-	{
-		number: '04',
-		name: 'Spectre',
-		mood: 'Terminal-inspired · Dark',
-		description: '터미널 화면에서 영감을 받은 개발자 블로그입니다. 어두운 화면과 모노스페이스 글꼴, 기술적인 분위기가 특징입니다.',
-		features: ['터미널 분위기', '다크', '검색', 'Markdown / MDX'],
-		demo: 'https://spectre.lou.gg/',
-		source: 'https://astro.build/themes/details/spectre/',
-		className: 'spectre',
-	},
-	{
-		number: '05',
-		name: 'Antares',
-		mood: 'Classic Astro blog',
-		description: '개인 소개, 카테고리·태그 탐색과 글 목록을 포함한 전통적인 블로그 템플릿입니다. 글과 분류가 쌓였을 때의 화면을 살펴보세요.',
-		features: ['카테고리', '태그', '개인 블로그', '무료'],
-		demo: 'https://antares.coderxi.com/',
-		source: 'https://astro.build/themes/details/antares/',
-		className: 'antares',
-	},
-	{
-		number: '06',
-		name: 'MinimalDev Astro Theme',
-		mood: 'Developer blog · Light / Dark',
-		description: '가벼운 개발자 블로그 디자인입니다. 카테고리·태그·검색이 포함되어 있어 글 위주로 운영할 때의 기본 구성을 확인하기 좋습니다.',
-		features: ['라이트 / 다크', '검색', '카테고리', 'MDX'],
-		demo: 'https://jsdev-astro-theme.vercel.app/',
-		source: 'https://astro.build/themes/details/minimaldev-astro-theme/',
-		className: 'minimaldev',
-	},
-];
+import { themeShortlist } from '../../data/theme-shortlist';
 ---
 
-<SiteLayout title="후보 테마 비교" description="선택한 여섯 가지 Astro 블로그 테마의 실제 라이브 데모를 한 페이지에서 비교합니다.">
+<SiteLayout title="Astro 블로그 테마 6종 비교" description="후보 Astro 테마를 전용 큰 화면에서 하나씩 살펴보고, 블로그 필수 기능을 비교합니다.">
 	<div class="intro">
-		<a class="back-link" href="/themes/">← 기존 테마 샘플로 돌아가기</a>
-		<p class="eyebrow">SHORTLIST · 6 THEMES</p>
-		<h1>고른 테마를 하나씩 비교해보세요</h1>
-		<p class="lead">각 후보의 실제 라이브 데모를 이 페이지에서 열어볼 수 있습니다. 같은 구성으로 만든 모형이 아니라 원래 테마 사이트를 불러옵니다.</p>
-		<p class="hint">일부 테마 사이트는 외부 페이지 안에서 보기를 허용하지 않을 수 있습니다. 이 경우 <strong>원본 사이트에서 열기</strong>를 누르면 같은 데모를 새 탭에서 볼 수 있습니다.</p>
+		<a class="back-link" href="/themes/">← 기존 다크 테마 샘플</a>
+		<p class="eyebrow">ASTRO BLOG THEME REVIEW</p>
+		<h1>후보 테마를 하나씩 크게 살펴보세요</h1>
+		<p class="lead">각 테마마다 전용 페이지에서 실제 데모를 크게 보고, 메뉴를 눌러 글 목록·글 상세·태그·검색을 확인할 수 있습니다.</p>
+		<p class="note">비교 목록의 기능 표시는 테마 소개 자료 기준입니다. <strong>데모에서 확인</strong>은 실제 페이지의 메뉴와 글을 열어 직접 살펴볼 항목입니다.</p>
 	</div>
 
-	<nav class="jump-list" aria-label="후보 테마 바로가기">
-		{themes.map((theme) => <a href={`#${theme.className}`}><span>{theme.number}</span>{theme.name}</a>)}
-	</nav>
-
-	<div class="theme-stack">
-		{themes.map((theme, index) => (
-			<section id={theme.className} class={`theme-card ${theme.className}`}>
-				<div class="theme-heading">
-					<div class="theme-title"><span class="number">{theme.number}</span><div><p class="mood">{theme.mood}</p><h2>{theme.name}</h2></div></div>
-					<div class="links"><a class="open-link" href={theme.demo} target="_blank" rel="noreferrer">원본 사이트에서 열기 ↗</a><a class="source-link" href={theme.source} target="_blank" rel="noreferrer">테마 정보 ↗</a></div>
+	<div class="theme-grid">
+		{themeShortlist.map((theme, index) => (
+			<article class={`theme-card ${theme.slug}`} style={`--tone:${theme.accent}`}>
+				<div class="card-top"><span class="number">{String(index + 1).padStart(2, '0')}</span><span class="style">{theme.style}</span></div>
+				<h2>{theme.name}</h2>
+				<p>{theme.description}</p>
+				{theme.demoNote && <p class="availability">데모 상태: 원본 미리보기 중지 · 작성자 운영 사이트를 대신 표시합니다.</p>}
+				<div class="quick-facts">
+					{theme.features.slice(1, 4).map((feature) => <span>{feature.label}: {feature.status}</span>)}
 				</div>
-				<p class="description">{theme.description}</p>
-				<ul class="features">{theme.features.map((feature) => <li>{feature}</li>)}</ul>
-				<details class="demo-panel" open={index === 0}>
-					<summary><span>실제 테마 미리보기</span><span class="summary-hint">눌러서 접거나 펼치기</span></summary>
-					<div class="frame-wrap">
-						<iframe src={theme.demo} title={`${theme.name} 실제 라이브 데모`} loading={index === 0 ? 'eager' : 'lazy'} referrerpolicy="strict-origin-when-cross-origin"></iframe>
-					</div>
-				</details>
-			</section>
+				<div class="card-actions">
+					<a class="large-link" href={`/themes/shortlist/${theme.slug}/`}>전용 큰 화면으로 보기 <span aria-hidden="true">→</span></a>
+					<a class="external" href={theme.demo} target="_blank" rel="noreferrer">{theme.demoNote ? '작성자 사이트 ↗' : '원본 데모 ↗'}</a>
+				</div>
+			</article>
 		))}
 	</div>
 
-	<aside class="decision-note">
-		<h2>고를 때는 이 부분을 비교해보세요</h2>
-		<p>첫 화면의 분위기, 글 목록에서 제목이 읽히는 정도, 본문 폭과 글자 크기, 모바일 메뉴, 다크모드, 사진·코드 표시를 살펴보면 블로그에 어울리는 방향을 정하기 쉽습니다.</p>
-	</aside>
+	<section class="checklist">
+		<h2>블로그로 쓸 때 중점적으로 볼 조건</h2>
+		<div><span>① 메뉴</span><p>상단 메뉴에서 카테고리·소개·검색을 찾기 쉬운가</p></div>
+		<div><span>② 글 화면</span><p>제목·본문·사진·코드가 모바일에서도 편하게 읽히는가</p></div>
+		<div><span>③ 탐색</span><p>태그/카테고리 페이지와 검색으로 글을 다시 찾을 수 있는가</p></div>
+		<div><span>④ 운영 방식</span><p>Markdown 파일 중심인지, 별도 CMS가 필요한지</p></div>
+	</section>
 </SiteLayout>
 
 <style>
 	.intro { margin: 0 0 1.5rem; }
-	.back-link { display: inline-block; margin-bottom: 1.5rem; color: rgb(var(--gray)); font-size: .8rem; text-decoration: none; }
+	.back-link { display: inline-block; margin-bottom: 1.3rem; color: rgb(var(--gray)); font-size: .78rem; text-decoration: none; }
 	.back-link:hover { color: var(--accent); }
-	.eyebrow { margin: 0 0 .35rem; color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .14em; }
-	h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.65rem); line-height: 1.2; }
-	.lead { max-width: 54rem; margin: .7rem 0 0; color: rgb(var(--gray-dark)); }
-	.hint { max-width: 54rem; margin: .75rem 0 0; padding: .7rem .9rem; border-left: 3px solid var(--accent); border-radius: 0 .55rem .55rem 0; background: rgb(var(--gray-light) / 20%); color: rgb(var(--gray)); font-size: .78rem; }
-	.hint strong { color: rgb(var(--gray-dark)); }
-	.jump-list { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.3rem 0 2rem; }
-	.jump-list a { display: inline-flex; align-items: center; gap: .45rem; padding: .45rem .7rem; border: 1px solid rgb(var(--gray-light)); border-radius: 99px; color: rgb(var(--gray-dark)); font-size: .75rem; text-decoration: none; }
-	.jump-list a:hover { border-color: var(--accent); color: var(--accent); }
-	.jump-list span { color: var(--accent); font-size: .65rem; font-weight: 700; }
-	.theme-stack { display: grid; gap: 1.25rem; }
-	.theme-card { --tone: #9aaeff; --surface: #121722; overflow: hidden; border: 1px solid color-mix(in srgb, var(--tone) 30%, rgb(var(--gray-light))); border-radius: 1rem; background: #10141c; scroll-margin-top: 1rem; }
-	.theme-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem .35rem; }
-	.theme-title { display: flex; align-items: center; gap: .8rem; min-width: 0; }
-	.number { display: grid; flex: 0 0 auto; width: 2.35rem; height: 2.35rem; place-items: center; border: 1px solid var(--tone); border-radius: .7rem; color: var(--tone); font-size: .75rem; font-weight: 800; }
-	.mood { margin: 0 0 .15rem; color: var(--tone); font-size: .67rem; letter-spacing: .07em; text-transform: uppercase; }
-	.theme-title h2 { margin: 0; font-size: 1.18rem; line-height: 1.25; }
-	.links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .7rem; }
-	.links a { font-size: .72rem; text-decoration: none; }
-	.open-link { color: var(--tone); font-weight: 700; }
-	.source-link { color: rgb(var(--gray)); }
-	.description { max-width: 60rem; margin: .3rem 1.1rem .75rem; color: rgb(var(--gray)); font-size: .8rem; }
-	.features { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 1.1rem .9rem; padding: 0; list-style: none; }
-	.features li { padding: .2rem .55rem; border: 1px solid rgb(var(--gray-light)); border-radius: 99px; color: rgb(var(--gray-dark)); font-size: .65rem; }
-	.demo-panel { margin: 0 .55rem .55rem; overflow: hidden; border: 1px solid rgb(var(--gray-light)); border-radius: .75rem; background: #0b0e13; }
-	.demo-panel summary { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem .85rem; color: rgb(var(--gray-dark)); cursor: pointer; font-size: .75rem; font-weight: 700; list-style: none; }
-	.demo-panel summary::-webkit-details-marker { display: none; }
-	.demo-panel summary::after { content: '＋'; color: var(--tone); }
-	.demo-panel[open] summary::after { content: '−'; }
-	.summary-hint { margin-left: auto; color: rgb(var(--gray)); font-size: .65rem; font-weight: 400; }
-	.frame-wrap { height: min(76vh, 760px); min-height: 420px; border-top: 1px solid rgb(var(--gray-light)); background: #fff; }
-	iframe { display: block; width: 100%; height: 100%; border: 0; background: white; }
-	.folio { --tone: #ae8bff; --surface: #191621; }
-	.draftbase { --tone: #71d7ca; --surface: #111a1c; }
-	.plain { --tone: #b8c4d8; --surface: #171a1f; }
-	.spectre { --tone: #65df9b; --surface: #101b14; }
-	.spectre .theme-title h2, .spectre .mood, .spectre .features { font-family: 'Courier New', monospace; }
-	.antares { --tone: #e9ae7d; --surface: #211817; }
-	.minimaldev { --tone: #72b5ff; --surface: #121923; }
-	.decision-note { margin: 1.5rem 0 0; padding: 1rem 1.1rem; border: 1px solid rgb(var(--gray-light)); border-radius: .9rem; background: rgb(var(--gray-light) / 12%); }
-	.decision-note h2 { margin: 0; font-size: 1rem; }
-	.decision-note p { margin: .4rem 0 0; color: rgb(var(--gray)); font-size: .8rem; }
-	@media (max-width: 640px) {
-		.theme-heading { align-items: flex-start; flex-direction: column; }
-		.links { justify-content: flex-start; padding-left: 3.15rem; }
-		.frame-wrap { height: 70vh; min-height: 360px; }
-		.summary-hint { display: none; }
-	}
+	.eyebrow { margin: 0 0 .35rem; color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .15em; }
+	h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.2; }
+	.lead { max-width: 56rem; margin: .65rem 0 0; color: rgb(var(--gray-dark)); }
+	.note { max-width: 56rem; margin: .8rem 0 0; padding: .7rem .9rem; border-left: 3px solid var(--accent); background: rgb(var(--gray-light) / 15%); color: rgb(var(--gray)); font-size: .77rem; }
+	.note strong { color: rgb(var(--gray-dark)); }
+	.theme-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+	.theme-card { --tone: #9aaeff; display: flex; flex-direction: column; min-height: 17rem; padding: 1.1rem; border: 1px solid color-mix(in srgb, var(--tone) 38%, rgb(var(--gray-light))); border-radius: 1rem; background: linear-gradient(145deg, color-mix(in srgb, var(--tone) 9%, #141922), #11151c 65%); }
+	.card-top { display: flex; align-items: center; gap: .6rem; }
+	.number { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--tone); border-radius: .6rem; color: var(--tone); font-size: .7rem; font-weight: 800; }
+	.style { color: var(--tone); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+	.theme-card h2 { margin: .85rem 0 .35rem; font-size: 1.25rem; }
+	.theme-card > p { margin: 0; color: rgb(var(--gray)); font-size: .79rem; line-height: 1.65; }
+	.theme-card .availability { margin-top: .45rem; color: #f0c96f; font-size: .68rem; }
+	.quick-facts { display: flex; flex-wrap: wrap; gap: .35rem; margin: .8rem 0 1rem; }
+	.quick-facts span { padding: .2rem .45rem; border: 1px solid rgb(var(--gray-light)); border-radius: 99px; color: rgb(var(--gray-dark)); font-size: .62rem; }
+	.card-actions { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: auto; padding-top: .7rem; border-top: 1px solid rgb(var(--gray-light) / 75%); }
+	.large-link { color: var(--tone); font-size: .78rem; font-weight: 800; text-decoration: none; }
+	.large-link:hover { text-decoration: underline; }
+	.external { color: rgb(var(--gray)); font-size: .68rem; text-decoration: none; white-space: nowrap; }
+	.external:hover { color: rgb(var(--gray-dark)); }
+	.checklist { margin: 1.5rem 0 0; padding: 1rem 1.1rem; border: 1px solid rgb(var(--gray-light)); border-radius: 1rem; background: rgb(var(--gray-light) / 9%); }
+	.checklist h2 { margin: 0 0 .75rem; font-size: 1rem; }
+	.checklist > div { display: grid; grid-template-columns: 9rem 1fr; gap: .7rem; padding: .45rem 0; border-top: 1px solid rgb(var(--gray-light) / 60%); }
+	.checklist span { color: var(--accent); font-size: .76rem; font-weight: 700; }
+	.checklist p { margin: 0; color: rgb(var(--gray)); font-size: .76rem; }
+	@media(max-width:680px) { .theme-grid { grid-template-columns: 1fr; } .theme-card { min-height: auto; } .checklist > div { grid-template-columns: 1fr; gap: .15rem; } }
 </style>
 
