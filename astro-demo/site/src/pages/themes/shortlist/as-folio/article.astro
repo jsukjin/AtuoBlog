@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../../../../components/BaseHead.astro';
+import Hero from '../../../../assets/ai-workflow-hero.webp';
+import Inline from '../../../../assets/ai-workflow-inline.webp';
+import Detail from '../../../../assets/blog-placeholder-2.jpg';
+---
+
+<html lang="ko">
+	<head><BaseHead title="Gemini와 n8n으로 블로그 초안 만들기" description="AI 블로그 글 작성 흐름을 예제로 보여주는 As-folio 스타일 블로그 게시글입니다." /></head>
+	<body>
+		<div class="article-page">
+			<header class="topbar">
+				<a class="brand" href="/themes/shortlist/as-folio/"><span class="brand-mark">A</span><span>Jin’s Journal<small>IDEAS · TECHNOLOGY · FINANCE</small></span></a>
+				<nav aria-label="주요 메뉴"><a href="/themes/shortlist/as-folio/">전체 글</a><a href="/themes/shortlist/as-folio/#posts">IT</a><a class="active" href="/themes/shortlist/as-folio/#posts">AI</a><a href="/themes/shortlist/as-folio/#posts">Stock</a><a href="/themes/shortlist/as-folio/#tags">태그</a><a href="/themes/shortlist/as-folio/#about">소개</a></nav>
+				<a class="back-link" href="/themes/shortlist/as-folio/">← 글 목록</a>
+			</header>
+			<main>
+				<article>
+					<header class="article-head">
+						<p class="eyebrow">AI · CONTENT WORKFLOW</p>
+						<h1>Gemini와 n8n으로<br /><span>블로그 초안 만들기</span></h1>
+						<p class="dek">주제 선정부터 글 초안, 이미지 연결까지. 자동화 파이프라인을 작은 단계로 나누어 관리하는 방법을 살펴봅니다.</p>
+						<div class="byline"><span class="avatar">J</span><span>Jin · 2026년 11월 21일</span><span class="dot">·</span><span>8분 읽기</span></div>
+					</header>
+					<figure class="hero-image"><Image src={Hero} alt="AI 글쓰기 자동화 흐름을 정리하는 노트북" /><figcaption>아이디어를 글과 이미지로 연결하는 자동화 흐름</figcaption></figure>
+					<div class="article-body">
+						<p class="lead">매일 글을 발행하려면 초안을 만드는 일뿐 아니라 주제 선정, 자료 확인, 이미지 제작, 게시 준비까지 이어져야 합니다. 이 과정을 한 번에 맡기기보다 각 단계가 무엇을 주고받는지 분명하게 나누면 수정과 검수가 쉬워집니다.</p>
+
+						<nav class="toc" aria-label="이 글의 목차"><strong>이 글에서 다루는 내용</strong><a href="#workflow">1. 글 작성 흐름</a><a href="#draft">2. 초안 생성 예제</a><a href="#review">3. 게시 전 확인</a></nav>
+
+						<h2 id="workflow">1. 글 작성 흐름을 작은 단계로 나누기</h2>
+						<p>주제 목록에서 오늘 쓸 항목을 선택한 뒤 Gemini가 Markdown 초안을 작성하고, n8n이 이미지 생성 서비스에 요청을 보냅니다. 이미지가 준비되면 R2에 저장하고, 최종 Markdown에는 공개 이미지 주소를 넣습니다.</p>
+						<figure class="inline-image"><Image src={Inline} alt="글 작성 단계와 확인 목록이 놓인 책상" /><figcaption>단계별 결과를 확인할 수 있도록 작업 흐름을 분리합니다.</figcaption></figure>
+						<aside class="callout"><span class="callout-icon">i</span><div><strong>운영 팁</strong><p>초안 생성과 공개 발행을 분리해두면, 나중에 자동 승인으로 바꾸더라도 검수 단계를 그대로 유지할 수 있습니다.</p></div></aside>
+
+						<h2 id="draft">2. Markdown 초안 생성 예제</h2>
+						<p>각 글은 제목과 설명, 카테고리와 태그, 본문을 한 파일에 담습니다. 처음에는 자동화가 초안만 저장하게 하고, 사실 확인과 링크 점검이 끝난 뒤 공개 상태로 전환합니다.</p>
+						<div class="code-title"><span class="code-dots"><i></i><i></i><i></i></span><span>n8n · create-post.md</span><span>Markdown</span></div>
+						<pre><code><span class="comment">---</span>
+<span class="key">title</span>: <span class="string">"Gemini와 n8n으로 블로그 초안 만들기"</span>
+<span class="key">category</span>: <span class="string">"AI"</span>
+<span class="key">tags</span>:
+  - <span class="string">Gemini</span>
+  - <span class="string">자동화</span>
+<span class="key">draft</span>: <span class="bool">true</span>
+<span class="comment">---</span>
+
+<span class="heading">## 글 작성 흐름</span>
+
+초안의 근거와 링크를 확인한 뒤 게시합니다.
+
+<span class="heading">&gt; 확인할 점</span>
+사실 관계와 이미지 출처를 검토합니다.</code></pre>
+						<figure class="inline-image detail-image"><Image src={Detail} alt="콘텐츠를 검토하며 메모하는 장면" /><figcaption>자동 생성된 글과 이미지에 설명과 출처를 확인합니다.</figcaption></figure>
+
+						<h2 id="review">3. 게시 전 확인할 항목</h2>
+						<h3>사실과 출처를 확인합니다</h3>
+						<p>AI가 만든 문장에는 부정확한 수치나 오래된 정보가 섞일 수 있습니다. 특히 주식·제품·정책처럼 시점에 따라 달라지는 내용은 원문 출처와 기준 날짜를 확인합니다.</p>
+						<ul class="checklist"><li>제목과 본문이 같은 내용을 다루는지</li><li>인용과 외부 링크가 실제 근거를 가리키는지</li><li>이미지 대체 텍스트와 캡션이 설명적인지</li></ul>
+
+						<blockquote><p>자동화의 목표는 검토를 없애는 것이 아니라, 반복 작업을 줄여 좋은 글을 더 안정적으로 발행하는 것입니다.</p></blockquote>
+
+						<div class="tag-list"><a href="/themes/shortlist/as-folio/#tags">#Gemini</a><a href="/themes/shortlist/as-folio/#tags">#자동화</a><a href="/themes/shortlist/as-folio/#tags">#블로그운영</a></div>
+					</div>
+				</article>
+				<footer><a href="/themes/shortlist/as-folio/">← As-folio 글 목록으로</a><span>Jin’s Journal · 기록하고, 배우고, 나누기</span></footer>
+			</main>
+			<a class="theme-back" href="/themes/shortlist/">테마 비교로 돌아가기 ↗</a>
+		</div>
+	</body>
+</html>
+
+<style>
+	:global(html),:global(body){margin:0;min-height:100%;background:#101511} .article-page{--green:#32c77d;--soft:#9de8bf;--bg:#101511;--panel:#151c17;--line:#28372d;--muted:#a4b2a8;min-height:100vh;background:var(--bg);color:#e8f0ea;font:16px/1.8 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.article-page *{box-sizing:border-box}.topbar{position:sticky;top:0;z-index:4;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:.8rem clamp(1rem,5vw,4rem);border-bottom:1px solid var(--line);background:rgba(16,21,17,.96);backdrop-filter:blur(12px)}.brand{display:flex;align-items:center;gap:.65rem;color:#edf5ef;text-decoration:none;font-size:.9rem;font-weight:750;white-space:nowrap}.brand-mark{display:grid;width:2.2rem;height:2.2rem;place-items:center;border:1px solid var(--green);border-radius:50%;color:var(--green);font-family:Georgia,serif;font-size:1.2rem}.brand small{display:block;color:var(--muted);font-size:.52rem;letter-spacing:.13em}.topbar nav{display:flex;justify-content:center;gap:clamp(.8rem,2.4vw,2rem)}.topbar nav a{padding:.4rem 0;border-bottom:2px solid transparent;color:#b8c4ba;font-size:.76rem;text-decoration:none;white-space:nowrap}.topbar nav a:hover,.topbar nav a.active{border-color:var(--green);color:var(--soft)}.back-link{color:var(--soft);font-size:.72rem;text-decoration:none;white-space:nowrap}main{width:min(100%,1000px);margin:auto;padding:clamp(2rem,6vw,5rem) clamp(1rem,5vw,2.5rem) 2rem}.article-head{max-width:850px;margin:0 auto 2rem}.eyebrow{margin:0 0 .7rem;color:var(--green);font-size:.7rem;font-weight:800;letter-spacing:.16em}.article-head h1{margin:0;color:#f0f6f1;font-size:clamp(2.4rem,6vw,4.4rem);letter-spacing:-.05em;line-height:1.15}.article-head h1 span{color:var(--soft)}.dek{max-width:720px;margin:1rem 0 1.4rem;color:#b2beb5;font-size:clamp(1rem,2vw,1.18rem);line-height:1.7}.byline{display:flex;align-items:center;gap:.65rem;color:var(--muted);font-size:.74rem}.avatar{display:grid;width:2rem;height:2rem;place-items:center;border:1px solid #477858;border-radius:50%;color:var(--soft);font-family:Georgia,serif}.dot{color:var(--green)}figure{margin:0}.hero-image{max-width:900px;margin:0 auto 2.2rem;overflow:hidden;border:1px solid var(--line);border-radius:1rem;background:var(--panel)}.hero-image img{display:block;width:100%;max-height:500px;object-fit:cover}.hero-image figcaption,.inline-image figcaption{padding:.55rem .8rem;color:var(--muted);font-size:.68rem;text-align:center}.article-body{max-width:760px;margin:auto}.article-body .lead{color:#d4dfd7;font-size:1.06rem;line-height:1.95}.toc{display:grid;gap:.35rem;margin:1.8rem 0 2.8rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:.8rem;background:#141b16}.toc strong{margin-bottom:.25rem;color:#e7f2e9;font-size:.84rem}.toc a{color:var(--soft);font-size:.78rem;text-decoration:none}.toc a:hover{text-decoration:underline}.article-body h2{margin:2.8rem 0 .75rem;color:#eef5ef;font-size:clamp(1.5rem,4vw,2rem);letter-spacing:-.025em;line-height:1.35;scroll-margin-top:6rem}.article-body h3{margin:1.8rem 0 .55rem;color:#dce9df;font-size:1.22rem}.article-body p{margin:.7rem 0 1.1rem;color:#b6c3b9;font-size:.94rem}.inline-image{margin:1.7rem 0 2rem;overflow:hidden;border:1px solid var(--line);border-radius:.8rem;background:var(--panel)}.inline-image img{display:block;width:100%;max-height:420px;object-fit:cover}.detail-image{max-width:680px;margin-left:auto;margin-right:auto}.callout{display:flex;gap:.85rem;margin:1.8rem 0;padding:1rem 1.1rem;border:1px solid rgba(50,199,125,.32);border-left:4px solid var(--green);border-radius:.65rem;background:rgba(50,199,125,.075)}.callout-icon{display:grid;flex:0 0 1.5rem;width:1.5rem;height:1.5rem;place-items:center;border:1px solid var(--green);border-radius:50%;color:var(--soft);font-size:.8rem;font-weight:800}.callout strong{color:var(--soft);font-size:.83rem}.callout p{margin:.2rem 0 0;font-size:.84rem}.code-title{display:flex;align-items:center;gap:.55rem;margin-top:1.2rem;padding:.6rem .85rem;border:1px solid #2b3b30;border-bottom:0;border-radius:.65rem .65rem 0 0;background:#18211a;color:#b8c8bc;font-size:.67rem}.code-title>span:nth-child(2){flex:1}.code-title>span:last-child{color:#829489}.code-dots{display:flex;gap:.25rem}.code-dots i{width:.5rem;height:.5rem;border-radius:50%;background:#e77768}.code-dots i:nth-child(2){background:#e5bd5d}.code-dots i:nth-child(3){background:#6fc582}pre{max-width:100%;overflow:auto;margin:0 0 1.5rem;padding:1.1rem 1.3rem;border:1px solid #2b3b30;border-radius:0 0 .65rem .65rem;background:#0c110d;color:#dbe9de;font: .78rem/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}pre code{white-space:pre}.comment{color:#6c8b75}.key{color:#9de8bf}.string{color:#e1ca8a}.bool{color:#df9e82}.heading{color:#82cfa0}.checklist{display:grid;gap:.45rem;padding-left:1.3rem;color:#b6c3b9;font-size:.87rem}.checklist li::marker{color:var(--green)}blockquote{margin:2rem 0;padding:.4rem 0 .4rem 1.2rem;border-left:3px solid var(--green);color:#e2eee4;font-size:1.1rem;font-weight:600}blockquote p{color:#e2eee4!important}.tag-list{display:flex;flex-wrap:wrap;gap:.5rem;margin:2rem 0}.tag-list a{padding:.28rem .7rem;border:1px solid #34533e;border-radius:99px;color:var(--soft);font-size:.7rem;text-decoration:none}.tag-list a:hover{background:rgba(50,199,125,.1)}footer{display:flex;justify-content:space-between;gap:1rem;margin:3rem auto 0;padding:1.2rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.7rem}footer a{color:var(--soft);text-decoration:none}.theme-back{position:fixed;right:1rem;bottom:1rem;z-index:5;padding:.55rem .8rem;border:1px solid #32c77d;border-radius:999px;background:rgba(16,21,17,.93);color:#9de8bf;font-size:.7rem;text-decoration:none;box-shadow:0 5px 24px rgba(0,0,0,.35)}
+	@media(max-width:760px){.topbar{grid-template-columns:1fr auto;gap:.6rem;padding:.75rem 1rem}.topbar nav{grid-column:1/-1;grid-row:2;justify-content:space-between;gap:.4rem;overflow-x:auto}.topbar nav a{font-size:.7rem}.back-link{font-size:.68rem}.article-head h1{font-size:clamp(2.25rem,11vw,3.5rem)}.article-body .lead{font-size:.98rem}.article-body p{font-size:.9rem}.hero-image img{height:260px;object-fit:cover}footer{flex-direction:column}pre{font-size:.68rem;padding:.8rem}}
+</style>
