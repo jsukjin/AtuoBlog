@@ -5,17 +5,13 @@ dist/
 astro-demo/site/node_modules/
 astro-demo/site/dist/
 astro-demo/site/src/content/blog/
-
-# Python / MkDocs
-.venv/
-mkdocs-demo/.venv/
-mkdocs-demo/site/
-mkdocs-demo/docs/blog/
-__pycache__/
-*.py[cod]
+mkdocs-demo/
 
 # Local editor and OS files
 .DS_Store
 Thumbs.db
 .vscode/
 
+# Planning files stay outside the blog repository
+계획.md
+계획.html

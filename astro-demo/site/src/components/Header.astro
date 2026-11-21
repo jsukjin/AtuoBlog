@@ -17,7 +17,7 @@ const categories = [
 		<div class="internal-links">
 			<HeaderLink href="/">홈</HeaderLink>
 			<HeaderLink href="/blog/">전체 글</HeaderLink>
-			<HeaderLink href="/themes/">테마 샘플</HeaderLink>
+			<HeaderLink href="/themes/shortlist/as-folio/">As-folio 미리보기</HeaderLink>
 			{categories.map((category) => (
 				<a class:list={[{ active: Astro.url.pathname.startsWith(category.href) }]} href={category.href}>{category.name}</a>
 			))}
@@ -116,4 +116,3 @@ const categories = [
 		nav a { padding: 0.65rem 0.5rem; font-size: 0.82rem; }
 	}
 </style>
-

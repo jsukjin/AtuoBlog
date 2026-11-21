@@ -6,7 +6,6 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const source = path.join(root, 'shared-content', 'posts');
 const destinations = [
   path.join(root, 'astro-demo', 'site', 'src', 'content', 'blog'),
-  path.join(root, 'mkdocs-demo', 'docs', 'blog'),
 ];
 
 for (const destination of destinations) {
@@ -17,5 +16,4 @@ for (const destination of destinations) {
   }
 }
 
-console.log('Synced shared Markdown into Astro and MkDocs demos.');
-
+console.log('Synced shared Markdown into Astro.');
