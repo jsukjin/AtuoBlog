@@ -43,9 +43,9 @@ export const themeShortlist = [
 		description: '장식을 줄이고 글에 집중하는 다국어 정적 블로그입니다. 프레임워크 의존성이 적고 코드·Markdown 예제 구성이 풍부합니다.',
 		features: [
 			{ label: '블로그 글 목록 / 상세', status: '지원', note: '정적 블로그 구조' },
-			{ label: '태그 / 카테고리 탐색', status: '데모에서 확인', note: '테마 메뉴와 글 화면에서 분류 링크 확인' },
+			{ label: '태그 / 카테고리 탐색', status: '지원', note: '실제 데모에 카테고리·태그 목록과 글별 태그가 보임' },
 			{ label: '본문 검색', status: '지원', note: 'Pagefind 기반 오프라인 전체 검색' },
-			{ label: '다크모드', status: '데모에서 확인', note: '현재 테마 소개에 명시되지 않아 실제 화면 확인 권장' },
+			{ label: '다크모드', status: '지원', note: '실제 데모 메뉴에 테마 전환 버튼 확인' },
 			{ label: '원고 관리 방식', status: '파일 기반', note: 'Markdown / MDX 콘텐츠 컬렉션' },
 		],
 		fit: '이미지보다 긴 글·코드·다국어 지원을 우선하는 경우',
